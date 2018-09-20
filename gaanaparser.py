@@ -9,8 +9,10 @@ import json
 
 
 def gettrackinfo(playlisturl):
-    start=[]
-    end=[]
+    trackstart=[]
+    trackend=[]
+    playliststart=[]
+    playlistend=[]
     trackdetails=[]
     response=urllib.request.urlopen(playlisturl)
     response=response.read().decode('utf-8')
@@ -21,8 +23,8 @@ def gettrackinfo(playlisturl):
     for c in re.finditer('{"source":',response):
         playliststart=c.start()
     for d in re.finditer('}</span>',response):
-        playlistend=d.start()
-    playlistinfo=json.loads(response[playliststart[i]:playlistend[i]])
+        playlistend=int(d.start())+1
+    playlistinfo=json.loads(response[playliststart:playlistend])
     numtracks=playlistinfo['trackcount']
     playlistname=playlistinfo['title']
     if len(trackstart)==len(trackend) and numtracks>0:
