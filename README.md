@@ -22,7 +22,13 @@ sudo apt-get install python3-pip
 ```
 from gaanaparser import gettrackinfo  
 
-tracks,numtracks=gettrackinfo('https://gaana.com/playlist/gaana-dj-ar-rahman-top-50-tamil')  
+name,numtracks,tracks=gettrackinfo('https://gaana.com/playlist/gaana-dj-ar-rahman-top-50-tamil')  
+
+# Following will print the title of playlist and the number of tracks/songs it contains  
+print(name)  
+print("")  
+print(numtracks)  
+print("")  
 
 # Following prints the title, song id and album of the first song in the playlist  
 print(tracks[0]['title'])
